@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="validateDB.js (4)" type="MongoRunConfiguration" factoryName="Mongo">
+    <setting name="path" value="$PROJECT_DIR$/dbValidator/validateDB.js" />
+    <setting name="shellParams" value="" />
+    <method />
+  </configuration>
+</component>

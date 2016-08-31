@@ -1,0 +1,11 @@
+{
+  "user": {
+    "name": "string",
+    "prefix": "string",
+    "users": "string"
+  },
+  "device": {
+    "name": "string",
+    "prefix": "string"
+  }
+}
