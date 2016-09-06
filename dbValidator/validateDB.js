@@ -2,7 +2,11 @@
  * Created by Inspiron on 8/29/2016.
  */
 
-var User = require('./db');
+// Bring Mongoose into the app
+var mongoose = require( 'mongoose' ),
+    User = mongoose.model('User');
+
+
 
 // Define JSON File
 var fs = require("fs");
@@ -17,9 +21,9 @@ console.log("prefix:", jsonContent.user.prefix);
 console.log("dob:", jsonContent.user);
 console.log("\n *EXIT* \n");
 
-insert("user",["name", "prefix", "users"],["miren", "miren2002", "2"]);
+//insert("user",["name", "prefix", "users"],["miren", "miren2002", "2"]);
 
-function insert(collection,document,data) {
+exports.insert = function insert(collection,document,data) {
     var json="jsonContent.";
     console.log(document.length);
     if (eval("jsonContent."+collection)  === undefined) {
@@ -36,7 +40,7 @@ function insert(collection,document,data) {
 
             for (var key in eval("jsonContent."+collection)) {
                 if(key === document[i]){
-                    record+= document[i]+': "'+data[i]+'",';
+                    record+=' "'+document[i]+'": "'+data[i]+'",';
                     val=true;
                 }
             }
@@ -46,10 +50,19 @@ function insert(collection,document,data) {
             }
 
         }
-        console.log("db."+collection+".insert"+"( { "+record.replace(/,\s*$/, "")+"} )");
+        console.log("db."+collection+".insert"+"( {"+record.replace(/,\s*$/, "")+"} )");
 
         //eval("db."+collection+".insert"+"( { "+record.replace(/,\s*$/, "")+"} )");
 
+        var data = "{ "+record.replace(/,\s*$/, "")+" }";
+
+        var aaron = new User(eval(JSON.parse(data)));
+        //var aaron = new User({ "name": "miren", "prefix": "miren2002", "users": "2555" });
+
+
+        aaron.save(function(err) {
+             if (err) return console.error(err);
+        });
 
 
         return true;

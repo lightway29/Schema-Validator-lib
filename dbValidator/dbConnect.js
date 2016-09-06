@@ -2,47 +2,42 @@
  * Created by Inspiron on 8/30/2016.
  */
 
-var mongoose = require('mongoose');
+// Bring Mongoose into the app
+var mongoose = require( 'mongoose' );
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/kasper');
-var db = mongoose.connection;
+// Build the connection string
+var dbURI = 'mongodb://localhost/kasper';
 
-db.on('error', console.error);
+// Create the database connection
+mongoose.connect(dbURI);
 
+// CONNECTION EVENTS
+// When successfully connected
+mongoose.connection.on('connected', function () {
+    console.log('Mongoose default connection open to ' + dbURI);
+});
 
-    db.once('open', function () {
-        // Create your schemas and models here.
-        var userSchema = new mongoose.Schema({
-            name: {type: String, required: true},
-            prefix: String,
-            users: String
-        });
+// If the connection throws an error
+mongoose.connection.on('error',function (err) {
+    console.log('Mongoose default connection error: ' + err);
+});
 
-        // Compile model using the Schema as the structure.
-        // Mongoose also creates a MongoDB collection for documents.
-        var User = mongoose.model('User', userSchema);
+// When the connection is disconnected
+mongoose.connection.on('disconnected', function () {
+    console.log('Mongoose default connection disconnected');
+});
 
-        var user = new User({
-            name: 'miren'
-            , prefix: 'miren2002'
-            , users: '9'
-        });
-
-        //user.save(function (err, user) {
-        //    if (err) return console.error(err);
-        //    console.dir(user);
-
-        //});
-
-        var aaron = new User({ name: 'kamal', prefix: 'miren2005', users: '10' });
-
-        aaron.save(function (err) {
-            if (err) return handleError(err);
-        });
-
-
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', function() {
+    mongoose.connection.close(function () {
+        console.log('Mongoose default connection disconnected through app termination');
+        process.exit(0);
     });
+});
 
+// BRING IN YOUR SCHEMAS & MODELS
+// For example
+require('./schema');
 
 
 
