@@ -20,7 +20,7 @@ validator = require('./validateDB');
 
    // var User = mongoose.model('User', userSchema);
 
-    if(validator.insert("user1",["name", "prefix", "users"],["miren", "miren2002", "2555"]) == true){
+    if(validator.insert("user",["name", "prefix", "users"],["miren", "miren2002", "2555"]) == true){
         console.log("working");
     }else{
         console.log("not working");
