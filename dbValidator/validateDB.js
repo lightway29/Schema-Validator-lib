@@ -3,7 +3,7 @@
  */
 
 // Bring Mongoose into the app
-var mongoose = require( 'mongoose' ),
+var mongoose = require( 'mongoose' );
     User = mongoose.model('User');
 // Define JSON File
 var fs = require("fs");
@@ -32,7 +32,6 @@ exports.insert = function insert(collection,document,data) {
                 console.log("Invalid Document :"+document[i]);
                 return false;
             }
-
         }
         //console.log("db."+collection+".insert"+"( {"+record.replace(/,\s*$/, "")+"} )");
         var data = "{ "+record.replace(/,\s*$/, "")+" }";
@@ -44,9 +43,3 @@ exports.insert = function insert(collection,document,data) {
         return true;
     }
 }
-
-
-
-
-
-///db.contacts.insert( { name: "Amanda", status: "Updated" } )
