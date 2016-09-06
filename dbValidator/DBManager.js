@@ -37,7 +37,7 @@ process.on('SIGINT', function() {
 
 // BRING IN YOUR SCHEMAS & MODELS
 // For example
-require('./schema');
+//require('./schema');
 
 
 
