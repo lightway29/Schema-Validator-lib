@@ -12,8 +12,12 @@ var contents = fs.readFileSync("mongoDB.json");
 // Define to JSON type
 var jsonContent = JSON.parse(contents);
 
-exports.insert = function insert(collection,document,data,modelName) {
-    var object = mongoose.model(modelName);
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+exports.insert = function insert(collection,document,data) {
+    var object = mongoose.model(collection.capitalizeFirstLetter());
     var json="jsonContent.";
     if (eval("jsonContent."+collection)  === undefined) {
         console.log("Invalid Collection :"+collection);
