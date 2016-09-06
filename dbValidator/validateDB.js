@@ -4,7 +4,7 @@
 
 // Bring Mongoose into the app
 var mongoose = require( 'mongoose' );
-    User = mongoose.model('User');
+
 // Define JSON File
 var fs = require("fs");
 // Get content from file
@@ -12,7 +12,8 @@ var contents = fs.readFileSync("mongoDB.json");
 // Define to JSON type
 var jsonContent = JSON.parse(contents);
 
-exports.insert = function insert(collection,document,data) {
+exports.insert = function insert(collection,document,data,modelName) {
+    var object = mongoose.model(modelName);
     var json="jsonContent.";
     if (eval("jsonContent."+collection)  === undefined) {
         console.log("Invalid Collection :"+collection);
@@ -35,7 +36,7 @@ exports.insert = function insert(collection,document,data) {
         }
         //console.log("db."+collection+".insert"+"( {"+record.replace(/,\s*$/, "")+"} )");
         var data = "{ "+record.replace(/,\s*$/, "")+" }";
-        var value = new User(eval(JSON.parse(data)));
+        var value = new object(eval(JSON.parse(data)));
 
         value.save(function(err) {
              if (err) return console.error(err);
