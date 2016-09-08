@@ -108,7 +108,6 @@ exports.deleteDeviceAPI = function deleteDeviceAPI(collection,document,data) {
         //create db schema model
         var object = mongoose.model(collection.capitalizeFirstLetter(),schemaVal);
 
-        //object.remove(eval(JSON.parse(data))).exec();
         object.findOne(eval(JSON.parse(data)), function (error, data){
             console.log(data + "\nDocument is deleted successfully");
             data.remove();
@@ -118,7 +117,7 @@ exports.deleteDeviceAPI = function deleteDeviceAPI(collection,document,data) {
 }
 
 
-exports.updateDeviceAPI = function updateDeviceAPI(collection,document,data) {
+exports.updateDeviceAPI = function updateDeviceAPI(collection,document,value,data) {
 
     var jasonFileName="./DeviceAPI/"+collection+"Sechema.json";
     // Get content from file
@@ -127,12 +126,15 @@ exports.updateDeviceAPI = function updateDeviceAPI(collection,document,data) {
     var jsonContent = JSON.parse(contents);
 
 
+
+
     var json="jsonContent.";
     if (eval("jsonContent."+collection)  === undefined) {
         console.log("Invalid Collection :"+collection);
         return false;
     }else{
         var record="";
+        var findRecord="";
         var schemaRecord="";
         for (i = 0; i < document.length; i++) {
             var val=false;
@@ -140,6 +142,7 @@ exports.updateDeviceAPI = function updateDeviceAPI(collection,document,data) {
             for (var key in eval("jsonContent."+collection)) {
                 if(key === document[i]){
                     record+=' "'+document[i]+'": "'+data[i]+'",';
+                    findRecord+=' "'+document[i]+'": "'+value[i]+'",';
                     schemaRecord+=' "'+document[i]+'": "'+eval("jsonContent."+collection+"."+document[i])+'",';
                     val=true;
                 }
@@ -151,6 +154,7 @@ exports.updateDeviceAPI = function updateDeviceAPI(collection,document,data) {
         }
 
         var data = "{ "+record.replace(/,\s*$/, "")+" }";
+        var findData = "{ "+findRecord.replace(/,\s*$/, "")+" }";
         //create db schema
         var schemaData = "{ "+schemaRecord.replace(/,\s*$/, "")+" }";
         var schemaVal = Schema(
@@ -160,6 +164,12 @@ exports.updateDeviceAPI = function updateDeviceAPI(collection,document,data) {
         //create db schema model
         var object = mongoose.model(collection.capitalizeFirstLetter(),schemaVal);
 
-        object.remove(eval(JSON.parse(data))).exec();
+        object.update(eval(JSON.parse(findData)), eval(JSON.parse(data)), {multi: true},
+            function(err, num){
+                if(err){
+                    throw err;
+                }
+                console.log(num);
+            })
     }
 }
