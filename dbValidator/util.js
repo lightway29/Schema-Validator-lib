@@ -1,8 +1,14 @@
 db = require('./DBManager'),
 validator = require('./validator');
 
-    if(validator.insert("user",["name", "prefix", "users"],["miren", "miren2002", "2999999"]) == true){
-        console.log("working");
+   // if(validator.insertDeviceAPI("user",["name", "prefix", "users"],["miren", "miren2002", "2999999"]) == true){
+   //     console.log("working");
+   // }else{
+   //     console.log("not working");
+   // }
+
+    if(validator.deleteDeviceAPI("user",["name"],["miren"]) == true){
+          console.log("working");
     }else{
-        console.log("not working");
+          console.log("not working");
     }
