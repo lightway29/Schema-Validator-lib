@@ -117,7 +117,7 @@ exports.deleteDeviceAPI = function deleteDeviceAPI(collection,document,data) {
 }
 
 
-exports.updateDeviceAPI = function updateDeviceAPI(collection,document,value,data) {
+exports.updateDeviceAPI = function updateDeviceAPI(collection,document,searchValue,data) {
 
     var jasonFileName="./DeviceAPI/"+collection+"Sechema.json";
     // Get content from file
@@ -139,7 +139,7 @@ exports.updateDeviceAPI = function updateDeviceAPI(collection,document,value,dat
             for (var key in eval("jsonContent."+collection)) {
                 if(key === document[i]){
                     record+=' "'+document[i]+'": "'+data[i]+'",';
-                    findRecord+=' "'+document[i]+'": "'+value[i]+'",';
+                    findRecord+=' "'+document[i]+'": "'+searchValue[i]+'",';
                     schemaRecord+=' "'+document[i]+'": "'+eval("jsonContent."+collection+"."+document[i])+'",';
                     val=true;
                 }
