@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc208160-feba-43b3-8940-2a9e04c1941c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dbValidator/util.js" afterPath="$PROJECT_DIR$/dbValidator/util.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dbValidator/validator.js" afterPath="$PROJECT_DIR$/dbValidator/validator.js" />
     </list>
     <ignored path="Schema-Validator-lib.iws" />
@@ -27,8 +26,8 @@
       <file leaf-file-name="validator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dbValidator/validator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5039788">
-              <caret line="169" column="30" selection-start-line="169" selection-start-column="30" selection-end-line="169" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.72944295">
+              <caret line="171" column="1" selection-start-line="171" selection-start-column="1" selection-end-line="171" selection-end-column="1" />
               <folding>
                 <element signature="e#0#44#0" expanded="false" />
               </folding>
@@ -845,8 +844,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dbValidator/validator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5039788">
-          <caret line="169" column="30" selection-start-line="169" selection-start-column="30" selection-end-line="169" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.72944295">
+          <caret line="171" column="1" selection-start-line="171" selection-start-column="1" selection-end-line="171" selection-end-column="1" />
           <folding>
             <element signature="e#0#44#0" expanded="false" />
           </folding>

@@ -125,9 +125,6 @@ exports.updateDeviceAPI = function updateDeviceAPI(collection,document,value,dat
     // Define to JSON type
     var jsonContent = JSON.parse(contents);
 
-
-
-
     var json="jsonContent.";
     if (eval("jsonContent."+collection)  === undefined) {
         console.log("Invalid Collection :"+collection);
