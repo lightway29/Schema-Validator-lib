@@ -2,7 +2,11 @@
   "user": {
     "name": "string",
     "prefix": "string",
-    "users": "string"
+    "users": "string",
+    "dob" :
+      { "year" : "string",
+        "month" : "string",
+        "date" : "string"}
   },
   "device": {
     "name": "string",
